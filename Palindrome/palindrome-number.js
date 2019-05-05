@@ -2,7 +2,8 @@
  * @param {number} x
  * @return {boolean}
  */
-function isPalindrome(x) {
+
+export function isPalindrome(x) {
   const str = x.toString();
   const len = str.length;
   let palindrome = true;
@@ -15,5 +16,3 @@ function isPalindrome(x) {
 
   return palindrome;
 }
-
-module.exports = isPalindrome;

@@ -1,4 +1,4 @@
-const isPalindrome = require('./palindrome-number');
+import { isPalindrome } from './palindrome-number';
 
 describe('isPalindrome()', () => {
   test('121 is palindrome', () => {
