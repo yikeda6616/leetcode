@@ -18,7 +18,7 @@ expect.extend({
     }
   }
 });
-ssss;
+
 describe('montecarlo', () => {
   test('Pi approx value', () => {
     expect(montecarlo(1)).toBeWithinRange(3.12, 3.16);
