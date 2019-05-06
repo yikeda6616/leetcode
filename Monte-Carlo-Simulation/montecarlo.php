@@ -6,9 +6,10 @@ function randomFloat($min = 0, $max = 1)
 }
 
 $i = 0;
-$ltone = 0;
-$try = 5;
-while ($i < $try) {
+$hit = 0;
+$attempts = 10000;
+
+while ($i < $attempts) {
     $x = randomFloat();
     $y = randomFloat();
 
@@ -16,11 +17,11 @@ while ($i < $try) {
     $y *= $y;
     $sqrt = sqrt($x + $y);
     if ($sqrt < 1) {
-        ++$ltone;
+        ++$hit;
     }
     ++$i;
 }
 
-echo 'Number of Attempts:'.$try;
-echo 'Number of Hit:'.$ltone;
-echo 'Area:'.($ltone / $try) * 4;
+echo 'Number of Attempts:'.$attempts;
+echo 'Number of Hit:'.$hit;
+echo 'Area:'.($hit / $attempts) * 4;
