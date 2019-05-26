@@ -20,3 +20,7 @@ class ClassB extends ClassA {
 
 const instance = new ClassB();
 console.log(`instance: ${instance.get()}`);
+
+/*
+生成したinstanceはclassBのインスタンスなのでthis.getはclassBのメソッドが呼ばれる。
+*/
