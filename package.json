@@ -13,7 +13,9 @@
   "devDependencies": {
     "babel-jest": "^24.8.0",
     "babel-preset-env": "^1.7.0",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
   },
   "dependencies": {}
 }
