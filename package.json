@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest ./2020-April/**/**",
     "watch": "jest --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.9.0",
     "babel-jest": "^24.8.0",
     "babel-preset-env": "^1.7.0",
     "jest": "^24.8.0",
