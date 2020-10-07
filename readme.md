@@ -1,5 +1,5 @@
 # LeetCode
 
 ```
-$ npm test
+$ yarn test
 ```
