@@ -15,4 +15,4 @@ const runningSum = function (nums) {
   return result;
 };
 
-module.exports = runningSum;
+module.exports = { runningSum };

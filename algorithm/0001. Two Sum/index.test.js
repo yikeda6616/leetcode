@@ -1,4 +1,4 @@
-const twoSum = require('./twoSum');
+const { twoSum } = require('.');
 
 describe('twoSum()', () => {
   test('[2, 7, 11, 15]', () => {
