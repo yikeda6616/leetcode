@@ -4,19 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest ./2020-April/**/**",
-    "watch": "jest --watch"
+    "test": "jest ./algorithm/**/**",
+    "watch": "jest ./algorithm/**/** --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.9.0",
-    "babel-jest": "^24.8.0",
-    "babel-preset-env": "^1.7.0",
-    "jest": "^24.8.0",
-    "ts-node": "^8.3.0",
-    "typescript": "^3.5.3"
+    "jest": "^26.5.2"
   },
   "dependencies": {}
 }
