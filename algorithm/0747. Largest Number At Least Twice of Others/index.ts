@@ -1,8 +1,4 @@
-/**
- * @param {number[]} nums
- * @return {number}
- */
-const dominantIndexV1 = function (nums) {
+export function dominantIndexV1(nums: number[]): number {
   let [max, maxIndex, second] = [0, 0, 0];
 
   for (let i = 0; i < nums.length; i++) {
@@ -16,9 +12,9 @@ const dominantIndexV1 = function (nums) {
   }
 
   return max >= second * 2 ? maxIndex : -1;
-};
+}
 
-const dominantIndexV2 = function (nums) {
+export function dominantIndexV2(nums: number[]): number {
   const sorted_nums = nums
     .map((num, index) => {
       return { index: index, value: num };
@@ -28,6 +24,4 @@ const dominantIndexV2 = function (nums) {
   return sorted_nums[0].value >= sorted_nums[1].value * 2
     ? sorted_nums[0].index
     : -1;
-};
-
-module.exports = { dominantIndexV2 };
+}
