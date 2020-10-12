@@ -1,4 +1,4 @@
-const { dominantIndexV2 } = require('.');
+import {dominantIndexV2} from '.'
 
 const name = 'dominantIndex';
 const tests = [

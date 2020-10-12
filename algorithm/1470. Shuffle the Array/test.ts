@@ -1,4 +1,4 @@
-const { shuffle } = require('.');
+import { shuffle } from '.';
 
 const name = 'shuffle';
 const tests = [

@@ -1,4 +1,4 @@
-const { twoSum } = require('.');
+import { twoSum } from '.';
 
 const name = 'twoSum';
 const tests = [
