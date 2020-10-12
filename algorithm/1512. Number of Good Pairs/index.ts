@@ -1,8 +1,4 @@
-/**
- * @param {number[]} nums
- * @return {number}
- */
-const numIdenticalPairs = function (nums) {
+export function numIdenticalPairs(nums: number[]): number {
   let count = 0;
 
   for (let i = 0; i < nums.length; i++) {
@@ -14,6 +10,4 @@ const numIdenticalPairs = function (nums) {
   }
 
   return count;
-};
-
-module.exports = { numIdenticalPairs };
+}

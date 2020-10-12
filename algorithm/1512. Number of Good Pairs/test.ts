@@ -1,4 +1,4 @@
-const { numIdenticalPairs } = require('.');
+import { numIdenticalPairs } from '.';
 
 const name = 'numIdenticalPairs';
 const tests = [
