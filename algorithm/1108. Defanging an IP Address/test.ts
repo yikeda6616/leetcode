@@ -1,4 +1,4 @@
-const { defangIPaddrV2 } = require('.');
+import { defangIPaddrV2 } from '.';
 
 const name = 'defangIPaddr';
 const tests = [
