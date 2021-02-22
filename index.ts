@@ -1,14 +1,9 @@
-const puppeteer = require('puppeteer');
+import { LeetCode } from './scraper';
 
 (async () => {
-    const url = 'https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/';
-    const browser = await puppeteer.launch({ headless: false });
-    const page = await browser.newPage();
-    await page.goto(url);
-    const titleSelector = '[data-cy="question-title"]' // DOM指定のためのセレクター
-    const elementHandle = await page.$(titleSelector);
-    const title = await (await elementHandle.getProperty('textContent')).jsonValue();
-    console.log(title);
-
-    // await browser.close();
+    const lg = new LeetCode();
+    await lg.initialize();
+    await lg.accessPageProcess();
+    await lg.createDirProcess();
+    await lg.close();
 })();
