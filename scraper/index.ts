@@ -1,4 +1,5 @@
 import puppeteer, { Browser, Page } from 'puppeteer';
+import { NodeHtmlMarkdown } from 'node-html-markdown'
 import { createDir } from './util';
 
 const URL = 'https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/';
@@ -6,6 +7,7 @@ const URL = 'https://leetcode.com/problems/how-many-numbers-are-smaller-than-the
 export class LeetCode {
     browser: Browser | null = null;
     page: Page | null = null;
+    dirName: string | undefined = "";
     async initialize() {
         this.browser = await puppeteer.launch({
             headless: false,
@@ -15,16 +17,34 @@ export class LeetCode {
     }
 
     async accessPageProcess() {
-        await this.page?.goto(URL);
+        await this.page?.goto(URL, { waitUntil: 'networkidle2' });
     }
 
     async createDirProcess() {
-        const titleSelector = '[data-cy="question-title"]'
-        const elementHandle = await this.page?.$(titleSelector);
-        const dirName = await (await elementHandle?.getProperty('textContent'))?.jsonValue();
-        const dirLocation = './algorithm';
-        await createDir(dirName as string, dirLocation);
+        const selector = '[data-cy="question-title"]'
+        const element = await this.page?.$(selector);
+        this.dirName = await (await element?.getProperty('textContent'))?.jsonValue();
+        await createDir(this.dirName, './algorithm');
     }
+
+    async getContentProcess() {
+        const selector = 'div[class*="question-content"]';
+        const element = await this.page?.$(selector);
+        const html = await (await element?.getProperty('innerHTML'))?.jsonValue();
+
+        const markdown = NodeHtmlMarkdown.translate(html as any);
+        const fs = require('fs');
+        const filePath = `./algorithm/${this.dirName}/index.md`
+        fs.writeFile(filePath, markdown, (err: any) => {
+            if (err) throw err;
+            console.log(`${filePath} is created successfully.`);
+        })
+        // await createFile(`./algorithm/${this.dirName}/`, content, (err) => {
+        //     return console.log(err);
+        // });
+    }
+
+    // TODO: async changeLanguageProcess() {}
 
     async close() {
         await this.browser?.close();

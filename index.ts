@@ -5,5 +5,7 @@ import { LeetCode } from './scraper';
     await lg.initialize();
     await lg.accessPageProcess();
     await lg.createDirProcess();
-    await lg.close();
+    await lg.getContentProcess();
+    // TODO: await lg.changeLanguageProcess();
+    // await lg.close();
 })();
