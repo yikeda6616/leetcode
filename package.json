@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "leetcode": "ts-node .",
     "test": "jest ./algorithm/**/**",
     "watch": "jest ./algorithm/**/** --watch"
   },
@@ -20,6 +21,7 @@
     "typescript": "^4.0.3"
   },
   "dependencies": {
+    "node-html-markdown": "^0.1.5",
     "puppeteer": "^7.1.0"
   }
 }
