@@ -16,6 +16,13 @@ export class LeetCode {
         this.page = await this.browser?.newPage();
     }
 
+    async setLanguageProcess() {
+        await this.page?.goto(URL);
+        await this.page?.evaluate((language) => {
+            localStorage.setItem('global_lang', language);
+        }, 'typescript')
+    }
+
     async accessPageProcess() {
         await this.page?.goto(URL, { waitUntil: 'networkidle2' });
     }
