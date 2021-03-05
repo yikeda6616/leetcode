@@ -8,6 +8,8 @@ export class LeetCode {
 	browser: Browser | null = null;
 	page: Page | null = null;
 	dirName: string | undefined = "";
+	localStorage = { global_lang: 'typescript' }
+
 	async initialize() {
 		this.browser = await puppeteer.launch({
 			headless: false,
@@ -17,10 +19,7 @@ export class LeetCode {
 	}
 
 	async setLanguageProcess() {
-		await this.page?.goto(URL);
-		await this.page?.evaluate((language) => {
-			localStorage.setItem('global_lang', language);
-		}, 'typescript')
+		setDomainLocalStorage(this.browser, URL, this.localStorage);
 	}
 
 	async accessPageProcess() {
@@ -61,3 +60,22 @@ export class LeetCode {
 		await this.browser?.close();
 	}
 }
+
+const setDomainLocalStorage = async (browser: Browser | null, url: string, values: {}) => {
+	const page = await browser?.newPage();
+	await page?.setRequestInterception(true);
+	page?.on('request', r => {
+		r.respond({
+			status: 200,
+			contentType: 'text/plain',
+			body: 'tweak me.',
+		});
+	});
+	await page?.goto(url);
+	await page?.evaluate(values => {
+		for (const key in values) {
+			localStorage.setItem(key, values[key]);
+		}
+	}, values);
+	await page?.close();
+};
