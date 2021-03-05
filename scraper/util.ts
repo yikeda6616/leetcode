@@ -2,7 +2,7 @@ const fs = require('fs');
 
 export const createDir = (name: string | undefined, location: string): void => {
   const dir = `${location}/${name}`;
-  if (!fs.existsSync(dir)) {
+  if (!fs.existsSync(dir) && name) {
     fs.mkdirSync(dir);
     console.log(`${dir} is created successfully.`);
   } else {
