@@ -1,8 +1,12 @@
 import puppeteer, { Browser, Page } from 'puppeteer';
 import { NodeHtmlMarkdown } from 'node-html-markdown'
+import { Command } from 'commander';
+
 import { createDir, createFile } from './util';
 
-const URL = 'https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/';
+const program = new Command();
+program.parse(process.argv);
+const URL = program.args[0];
 
 export class LeetCode {
 	browser: Browser | null = null;
