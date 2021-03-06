@@ -1,6 +1,6 @@
 import puppeteer, { Browser, Page } from 'puppeteer';
 import { NodeHtmlMarkdown } from 'node-html-markdown'
-import { createDir } from './util';
+import { createDir, createFile } from './util';
 
 const URL = 'https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/';
 
@@ -9,6 +9,7 @@ export class LeetCode {
 	page: Page | null = null;
 	dirName: string | undefined = "";
 	localStorage = { global_lang: 'typescript' }
+	lines: string[] | any[] | undefined = []
 
 	async initialize() {
 		this.browser = await puppeteer.launch({
@@ -37,30 +38,21 @@ export class LeetCode {
 		const selector = 'div[class*="question-content"]';
 		const element = await this.page?.$(selector);
 		const html = await (await element?.getProperty('innerHTML'))?.jsonValue();
-
 		const markdown = NodeHtmlMarkdown.translate(html as any);
-		const fs = require('fs');
 		const filePath = `./algorithm/${this.dirName}/index.md`
 		await createFile(filePath, markdown);
 	}
 
 	async getTemplateProcess() {
 		const selector = '.CodeMirror-line';
-		let elements = await this.page?.$$(selector);
-		await elements?.map(async elm => {
-			const html = await (await elm.getProperty('innerText'))?.jsonValue();
-			console.log(html);
-		})
-		// await this.page?.evaluate((selector) => {
-		// 	console.log(selector)
-		// 	let elements = Array.from(document.querySelectorAll(selector))
-		// 	let lines = elements.map((element) => {
-		// 		return element.innerText;
-		// 	})
-		// 	console.log(lines);
-		// }, selector);
-		// document.querySelector('.CodeMirror-line').children[0].children[1].innerText
-		// "function smallerNumbersThanCurrent(nums: number[]): number[] {"
+		this.lines = await this.page?.evaluate((selector) => {
+			const list = Array.from(document.querySelectorAll(selector));
+			return list.map(data => data.textContent);
+		}, selector);
+		const content = this.lines?.join('\n')
+		console.log(content);
+		const filePath = `./algorithm/${this.dirName}/index.ts`
+		await createFile(filePath, content)
 	}
 
 	async close() {
