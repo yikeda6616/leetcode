@@ -41,10 +41,7 @@ export class LeetCode {
 		const markdown = NodeHtmlMarkdown.translate(html as any);
 		const fs = require('fs');
 		const filePath = `./algorithm/${this.dirName}/index.md`
-		fs.writeFile(filePath, markdown, (err: any) => {
-			if (err) throw err;
-			console.log(`${filePath} is created successfully.`);
-		})
+		await createFile(filePath, markdown);
 	}
 
 	async getTemplateProcess() {
