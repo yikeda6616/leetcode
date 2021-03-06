@@ -17,7 +17,7 @@ export class LeetCode {
 
 	async initialize() {
 		this.browser = await puppeteer.launch({
-			headless: false,
+			headless: true,
 			slowMo: 50,
 		})
 		this.page = await this.browser?.newPage();
