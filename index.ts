@@ -8,5 +8,5 @@ import { LeetCode } from './scraper';
 	await lg.createDirProcess();
 	await lg.getContentProcess();
 	await lg.getTemplateProcess();
-	// await lg.close();
+	await lg.close();
 })();
