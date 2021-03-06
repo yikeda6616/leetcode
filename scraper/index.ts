@@ -45,15 +45,25 @@ export class LeetCode {
 			if (err) throw err;
 			console.log(`${filePath} is created successfully.`);
 		})
-		// await createFile(`./algorithm/${this.dirName}/`, content, (err) => {
-		//     return console.log(err);
-		// });
 	}
 
 	async getTemplateProcess() {
-		const selector = '.CodeMirror-code';
-		const element = await this.page?.$(selector);
-		console.log(element);
+		const selector = '.CodeMirror-line';
+		let elements = await this.page?.$$(selector);
+		await elements?.map(async elm => {
+			const html = await (await elm.getProperty('innerText'))?.jsonValue();
+			console.log(html);
+		})
+		// await this.page?.evaluate((selector) => {
+		// 	console.log(selector)
+		// 	let elements = Array.from(document.querySelectorAll(selector))
+		// 	let lines = elements.map((element) => {
+		// 		return element.innerText;
+		// 	})
+		// 	console.log(lines);
+		// }, selector);
+		// document.querySelector('.CodeMirror-line').children[0].children[1].innerText
+		// "function smallerNumbersThanCurrent(nums: number[]): number[] {"
 	}
 
 	async close() {
