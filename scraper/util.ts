@@ -14,7 +14,7 @@ export const createFile = (
   path: string | undefined,
   content: string | undefined
 ): void => {
-  fs.writeFile(path, content, (err: any) => {
+  fs.writeFile(path, content, { flag: 'wx' }, (err: any) => {
     if (err) throw err;
     console.log(`${path} is created successfully.`);
   });
