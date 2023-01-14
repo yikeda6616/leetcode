@@ -32,7 +32,7 @@ export class LeetCode {
   }
 
   async createDirProcess() {
-    const selector = '[data-cy="question-title"]';
+    const selector = 'span.text-label-1';
     const element = await this.page?.$(selector);
     this.dirName = await (
       await element?.getProperty('textContent')
@@ -41,7 +41,7 @@ export class LeetCode {
   }
 
   async getContentProcess() {
-    const selector = 'div[class*="question-content"]';
+    const selector = 'div[class*="_1l1MA"]';
     const element = await this.page?.$(selector);
     const html = await (await element?.getProperty('innerHTML'))?.jsonValue();
     const markdown = NodeHtmlMarkdown.translate(html as any);
@@ -50,7 +50,7 @@ export class LeetCode {
   }
 
   async getTemplateProcess() {
-    const selector = '.CodeMirror-line';
+    const selector = '.view-lines';
     this.lines = await this.page?.evaluate((selector) => {
       const list = Array.from(document.querySelectorAll(selector));
       return list.map((data) => data.textContent);
