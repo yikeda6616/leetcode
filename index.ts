@@ -1,12 +1,11 @@
 import { LeetCode } from './scraper';
-
 (async () => {
-	const lg = new LeetCode();
-	await lg.initialize();
-	await lg.setLanguageProcess();
-	await lg.accessPageProcess();
-	await lg.createDirProcess();
-	await lg.getContentProcess();
-	await lg.getTemplateProcess();
-	await lg.close();
+  const leetCode = new LeetCode();
+  await leetCode.initialize();
+  await leetCode.setLanguageProcess();
+  await leetCode.accessPageProcess();
+  await leetCode.createDirProcess();
+  await leetCode.getContentProcess();
+  await leetCode.getTemplateProcess();
+  await leetCode.close();
 })();

@@ -1,4 +1,4 @@
-import {dominantIndexV2} from '.'
+import { dominantIndexV2 } from '.';
 
 const name = 'dominantIndex';
 const tests = [
