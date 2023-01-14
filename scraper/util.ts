@@ -19,3 +19,11 @@ export const createFile = (
     console.log(`${path} is created successfully.`);
   });
 };
+
+export const fourDigitNumber = (n: string): string => {
+  const target: string[] = n.split('');
+  while (target.length < 4) {
+    target.unshift('0');
+  }
+  return target.join('');
+};

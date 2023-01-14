@@ -2,7 +2,7 @@ import puppeteer, { Browser, Page } from 'puppeteer';
 import { NodeHtmlMarkdown } from 'node-html-markdown';
 import { Command } from 'commander';
 
-import { createDir, createFile } from './util';
+import { createDir, createFile, fourDigitNumber } from './util';
 
 const program = new Command();
 program.parse(process.argv);
@@ -37,6 +37,12 @@ export class LeetCode {
     this.dirName = await (
       await element?.getProperty('textContent')
     )?.jsonValue();
+    const splitted = this.dirName?.split('.');
+    if (splitted !== undefined) {
+      splitted[0] = splitted && fourDigitNumber(splitted[0]);
+      this.dirName = splitted?.join('.');
+    }
+
     await createDir(this.dirName, './algorithm');
   }
 
